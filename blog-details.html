@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blog article – Fresh & Clean steam cleaning insights." />
+  <title>Blog Article | Fresh & Clean Steam Cleaning</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPScjMjBCOEIwJy8+PHBhdGggZD0nTTMwIDUwIEw1MCA3MCBMNzAgMzAnIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nOCcgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+PC9zdmc+" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #000; --white: #fff; --accent: #20B8B0;
+      --bg-primary: #fff; --bg-secondary: #F0F9F9;
+      --text-main: #000; --text-heading: #000;
+      --card-bg: #fff; --border-light: #E2E8F0;
+      --navbar-bg: rgba(255,255,255,0.85);
+      --shadow: 0 8px 32px rgba(0,0,0,0.08);
+      --nav-text: #333; --dropdown-bg: #fff; --dropdown-text: #333;
+    }
+    [data-theme="dark"] {
+      --bg-primary: #111; --bg-secondary: #1A1A1A;
+      --text-main: #EAEAEA; --text-heading: #FAFAFA;
+      --card-bg: #222; --border-light: #3A3A3A;
+      --navbar-bg: rgba(17,17,17,0.9);
+      --nav-text: #EAEAEA; --dropdown-bg: #222; --dropdown-text: #EAEAEA;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-main); transition: background-color .3s, color .3s; line-height: 1.5; }
+    h1,h2,h3,h4,h5,h6 { color: var(--text-heading); font-weight: 700; line-height: 1.2; }
+    a { text-decoration: none; }
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* NAVBAR */
+    .navbar-container { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%); width: 92%; max-width: 1300px; background: var(--navbar-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: 60px; border: 1px solid rgba(32,184,176,0.3); box-shadow: var(--shadow); padding: .5rem 1.5rem; z-index: 1000; transition: all .25s ease; }
+    .navbar-flex { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .brand-group { display: flex; align-items: center; gap: .5rem; }
+    .logo { display: flex; align-items: center; gap: .5rem; transition: transform .2s; }
+    .logo:hover { transform: scale(1.03); }
+    .logo-icon { width: 2.6rem; height: 2.6rem; background: rgba(32,184,176,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--accent); color: var(--accent); font-size: 1.4rem; }
+    .logo-text { font-size: 1.5rem; font-weight: 900; color: var(--text-heading); letter-spacing: -0.02em; }
+    .logo-text span { color: var(--accent); }
+    .logo-tagline { font-size: .55rem; color: var(--nav-text); display: block; margin-top: -.15rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+    .desktop-nav { display: none; background: rgba(0,0,0,0.04); padding: .2rem .5rem; border-radius: 60px; border: 1px solid rgba(0,0,0,0.06); align-items: center; }
+    [data-theme="dark"] .desktop-nav { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); }
+    .desktop-nav .nav-link { color: var(--nav-text); padding: .45rem 1.1rem; border-radius: 40px; font-weight: 500; font-size: .9rem; transition: .2s; cursor: pointer; display: inline-block; white-space: nowrap; }
+    .desktop-nav .nav-link:hover { background: var(--accent); color: var(--white); box-shadow: 0 4px 14px rgba(32,184,176,0.3); }
+    .desktop-nav .nav-link.active { background: var(--accent); color: var(--white); font-weight: 600; }
+    .desktop-nav .dropdown { position: relative; display: inline-block; }
+    .desktop-nav .dropdown-menu { position: absolute; top: 110%; left: 0; background: var(--dropdown-bg); border: 1px solid var(--border-light); border-radius: 20px; min-width: 170px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: .25s; box-shadow: 0 20px 30px rgba(0,0,0,.1); padding: .3rem 0; }
+    [data-theme="dark"] .desktop-nav .dropdown-menu { box-shadow: 0 20px 30px rgba(0,0,0,.5); }
+    .desktop-nav .dropdown:hover .dropdown-menu, .desktop-nav .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .desktop-nav .dropdown-item { display: block; padding: 8px 20px; color: var(--dropdown-text); transition: .2s; border-radius: 12px; margin: 2px 6px; }
+    .desktop-nav .dropdown-item:hover { background: var(--accent); color: var(--white); padding-left: 28px; }
+    .dropdown-arrow { font-size: .6rem; transition: .2s; margin-left: 4px; }
+    .desktop-nav .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+    .navbar-right { display: none; align-items: center; gap: .5rem; }
+    .icon-btn { width: 2.2rem; height: 2.2rem; background: rgba(0,0,0,0.04); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--nav-text); border: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: .2s; font-size: .95rem; }
+    [data-theme="dark"] .icon-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); }
+    .icon-btn:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+    .login-btn { background: var(--accent); color: var(--white); padding: .4rem 1.1rem; border-radius: 60px; font-weight: 700; font-size: .8rem; display: flex; align-items: center; gap: .3rem; transition: .2s; border: 1px solid transparent; }
+    .login-btn:hover { background: var(--black); color: var(--white); border-color: var(--accent); }
+    [data-theme="dark"] .login-btn:hover { background: var(--white); color: var(--black); }
+    .mobile-menu-btn { display: flex; color: var(--nav-text); font-size: 1.5rem; background: transparent; border: none; cursor: pointer; padding: .2rem .4rem; }
+    .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--black); z-index: 9999; overflow-y: auto; transform: translateX(-100%); transition: transform .3s ease; display: flex; flex-direction: column; }
+    .mobile-menu.active { transform: translateX(0); }
+    .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 2px solid var(--accent); }
+    .mobile-menu-close { color: #fff; font-size: 2rem; background: none; border: none; cursor: pointer; }
+    .mobile-menu-items { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .mobile-menu-item { display: flex; align-items: center; padding: 1rem 0; color: #fff; font-size: 1.2rem; font-weight: 500; border-bottom: 1px solid #2a2a2a; transition: .2s; gap: .8rem; }
+    .mobile-menu-item i { color: var(--accent); width: 1.8rem; }
+    .mobile-menu-item:hover { background: #1f1f1f; padding-left: .5rem; }
+    .mobile-menu-item.active { background: #1f1f1f; padding-left: .5rem; border-left: 3px solid var(--accent); }
+    .mobile-dropdown { border-bottom: 1px solid #2a2a2a; }
+    .mobile-dropdown-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; color: #fff; font-size: 1.2rem; font-weight: 500; padding: 1rem 0; cursor: pointer; }
+    .mobile-dropdown-btn i:first-child { color: var(--accent); width: 1.8rem; }
+    .mobile-dropdown-btn .fa-chevron-down { color: var(--accent); transition: .2s; }
+    .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: #1a1a1a; border-radius: 16px; margin-bottom: .5rem; }
+    .mobile-dropdown-content.active { max-height: 200px; padding: .75rem 0; }
+    .mobile-dropdown-content a { display: flex; align-items: center; padding: .7rem 1.5rem .7rem 3rem; color: #ccc; transition: .2s; }
+    .mobile-dropdown-content a:hover { background: var(--accent); color: var(--black); }
+    .mobile-action-item { display: flex; align-items: center; padding: 1rem 0; color: #fff; font-size: 1.2rem; font-weight: 500; border-bottom: 1px solid #2a2a2a; background: transparent; border: none; width: 100%; cursor: pointer; gap: .8rem; }
+    .mobile-action-item i { color: var(--accent); width: 1.8rem; }
+    .mobile-action-item:hover { background: #1f1f1f; padding-left: .5rem; }
+    .mobile-separator { margin: 1rem 0 .5rem 0; border-top: 2px solid #2f2f2f; }
+
+    /* DYNAMIC ARTICLE HERO */
+    .article-hero { position: relative; min-height: 65vh; display: flex; align-items: flex-end; padding: 10rem 0 4rem; overflow: hidden; background: #111; }
+    .article-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(.4); z-index: 0; }
+    .article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.85)); z-index: 1; }
+    .article-hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .article-hero-content .article-tag { display: inline-block; background: var(--accent); color: var(--white); padding: .35rem 1rem; border-radius: 60px; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1.2rem; }
+    .article-hero-content h1 { color: #fff; font-family: 'Playfair Display', serif; font-size: 2.4rem; line-height: 1.15; margin-bottom: 1.2rem; }
+    .article-hero-content .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; color: #E2E8F0; font-size: .9rem; }
+    .article-hero-content .article-meta span { display: flex; align-items: center; gap: .4rem; }
+    .article-hero-content .article-meta i { color: var(--accent); }
+    @media (min-width: 768px) { .article-hero-content h1 { font-size: 3.4rem; } }
+
+    /* ARTICLE BODY */
+    .article-body { padding: 4rem 0 5rem; }
+    .article-layout { display: grid; gap: 3rem; grid-template-columns: 1fr; }
+    @media (min-width: 992px) { .article-layout { grid-template-columns: 1.7fr 1fr; } }
+    .article-content { font-size: 1.05rem; line-height: 1.85; }
+    .article-content p { margin-bottom: 1.5rem; opacity: .9; }
+    .article-content h2 { font-size: 1.7rem; margin: 2.5rem 0 1rem; }
+    .article-content h2 span { color: var(--accent); }
+    .article-content h3 { font-size: 1.3rem; margin: 2rem 0 .8rem; }
+    .article-content ul, .article-content ol { margin: 0 0 1.5rem 1.5rem; }
+    .article-content li { margin-bottom: .6rem; opacity: .9; }
+    .article-content strong { color: var(--text-heading); }
+    .article-content a { color: var(--accent); font-weight: 600; }
+    .article-content a:hover { text-decoration: underline; }
+    .article-content blockquote { border-left: 4px solid var(--accent); background: var(--bg-secondary); padding: 1.2rem 1.5rem; border-radius: 0 1rem 1rem 0; margin: 1.5rem 0; font-style: italic; opacity: .9; }
+
+    /* SIDEBAR */
+    .article-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--card-bg); border: 2px solid var(--border-light); border-radius: 1.5rem; padding: 1.8rem; transition: .3s; }
+    .sidebar-card:hover { border-color: var(--accent); }
+    .sidebar-card h3 { font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+    .sidebar-card h3 i { color: var(--accent); }
+    .sidebar-card p { font-size: .9rem; opacity: .8; margin-bottom: 1rem; line-height: 1.7; }
+    .btn-primary { background: var(--accent); color: var(--white); padding: .9rem 2rem; border-radius: 60px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; transition: .2s; border: none; cursor: pointer; box-shadow: 0 12px 20px -8px rgba(32,184,176,.35); width: 100%; font-size: .95rem; }
+    .btn-primary:hover { background: var(--black); color: #fff; transform: translateY(-3px); }
+    [data-theme="dark"] .btn-primary:hover { background: var(--white); color: var(--black); }
+    .related-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+    .related-list li a { display: flex; align-items: center; gap: .6rem; font-size: .9rem; color: var(--text-main); opacity: .85; transition: .2s; }
+    .related-list li a:hover { color: var(--accent); opacity: 1; }
+    .related-list li a i { color: var(--accent); font-size: .7rem; }
+
+    /* BACK LINK */
+    .back-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--accent); font-weight: 700; font-size: .95rem; margin-bottom: 2rem; transition: .2s; }
+    .back-link:hover { gap: .8rem; }
+
+    /* CTA + FOOTER */
+    .cta-banner { background: var(--black); padding: 4rem 0; text-align: center; border-top: 3px solid var(--accent); border-bottom: 3px solid var(--accent); }
+    .cta-banner h2 { color: #fff; font-size: 2.5rem; margin-bottom: 1rem; }
+    .cta-banner h2 span { color: var(--accent); }
+    .cta-banner p { font-size: 1.125rem; max-width: 36rem; margin: 0 auto 2rem; color: #ccc; }
+    .cta-banner .btn-white { background: var(--accent); color: var(--white); padding: 1rem 2.8rem; border-radius: 60px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; transition: .2s; display: inline-block; }
+    .cta-banner .btn-white:hover { background: #fff; color: var(--black); }
+    .footer { background: var(--black); color: #fff; padding: 4rem 0; border-top: 3px solid var(--accent); }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4,1fr); } }
+    .footer-logo { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+    .footer-logo-icon { width: 3rem; height: 3rem; background: rgba(255,255,255,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--accent); color: var(--accent); font-size: 1.6rem; }
+    .footer-logo-text { font-size: 1.5rem; font-weight: 900; color: #fff; }
+    .footer-logo-text span { color: var(--accent); }
+    .footer-tagline { font-size: .6rem; color: #aaa; display: block; margin-top: -.2rem; font-weight: 500; letter-spacing: .1em; }
+    .footer-heading { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: .5rem; }
+    .footer-links a { color: #9ca3af; transition: .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-input { width: 100%; padding: .75rem; border-radius: 60px; margin-bottom: .5rem; border: none; background: #222; color: #fff; }
+    .footer-btn { width: 100%; background: var(--accent); color: var(--white); padding: .75rem; border-radius: 60px; font-weight: 700; border: none; cursor: pointer; transition: .2s; }
+    .footer-btn:hover { background: #fff; color: var(--black); }
+    .copyright { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; text-align: center; color: #9ca3af; font-size: .875rem; }
+    .copyright span { color: var(--accent); }
+    #scroll-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem; background: var(--accent); color: var(--white); border-radius: 50%; box-shadow: 0 10px 20px rgba(32,184,176,.3); border: none; cursor: pointer; transition: .2s; z-index: 100; display: none; }
+    #scroll-top:hover { background: #fff; color: var(--black); }
+    @media (min-width: 1024px) { .desktop-nav { display: flex; } .navbar-right { display: flex; } .mobile-menu-btn { display: none; } }
+
+    /* ERROR */
+    .error-state { text-align: center; padding: 6rem 1.5rem; }
+    .error-state i { font-size: 4rem; color: var(--accent); margin-bottom: 1rem; }
+    .error-state h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .error-state p { opacity: .8; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-container" id="navbar">
+  <div class="container navbar-flex">
+    <div class="brand-group">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-spray-can"></i></div>
+        <div><div class="logo-text">Fresh<span>&Clean</span></div><span class="logo-tagline">steam cleaning</span></div>
+      </a>
+    </div>
+    <div class="desktop-nav">
+      <div class="dropdown" id="home-dropdown">
+        <span class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+        <div class="dropdown-menu">
+          <a href="index.html" class="dropdown-item">Home I</a>
+          <a href="home2.html" class="dropdown-item">Home II</a>
+        </div>
+      </div>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <div class="dropdown" id="dashboard-dropdown">
+        <span class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+        <div class="dropdown-menu">
+          <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+          <a href="client-dashboard.html" class="dropdown-item">Client Dashboard</a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+      <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+      <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-spray-can"></i></div>
+      <div><div class="logo-text">Fresh<span>&Clean</span></div><span class="logo-tagline">steam cleaning</span></div>
+    </a>
+    <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mobile-menu-items">
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')"><span><i class="fas fa-home"></i> Home</span><i class="fas fa-chevron-down"></i></button>
+      <div id="home-mobile" class="mobile-dropdown-content"><a href="index.html">Home I</a><a href="home2.html">Home II</a></div>
+    </div>
+    <a href="services.html" class="mobile-menu-item"><i class="fas fa-broom"></i> Services</a>
+    <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+    <a href="blog.html" class="mobile-menu-item active"><i class="fas fa-newspaper"></i> Blog</a>
+    <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')"><span><i class="fas fa-columns"></i> Dashboard</span><i class="fas fa-chevron-down"></i></button>
+      <div id="dashboard-mobile" class="mobile-dropdown-content"><a href="admin-dashboard.html">Admin Dashboard</a><a href="client-dashboard.html">Client Dashboard</a></div>
+    </div>
+    <div class="mobile-separator"></div>
+    <button class="mobile-action-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</button>
+    <button class="mobile-action-item" onclick="window.location.href='register.html'"><i class="fas fa-user-plus"></i> Register</button>
+    <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+    <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+  </div>
+</div>
+
+<!-- DYNAMIC CONTENT -->
+<div id="dynamic-content"></div>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a <span>deeper clean</span>?</h2>
+    <p>Book your professional steam cleaning today. Free quotes and flexible scheduling available.</p>
+    <a href="book.html" class="btn-white"><i class="fas fa-calendar-check"></i> Book now</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo" style="text-decoration:none;">
+          <div class="footer-logo-icon"><i class="fas fa-spray-can"></i></div>
+          <div><div class="footer-logo-text">Fresh<span>&Clean</span></div><span class="footer-tagline">steam cleaning</span></div>
+        </a>
+        <p style="color:#9ca3af;">Professional carpet and upholstery steam cleaning for a healthier, fresher home.</p>
+      </div>
+      <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="book.html">Book Now</a></li></ul></div>
+      <div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="#">Service Areas</a></li><li><a href="faq.html">FAQs</a></li><li><a href="#">Gift Cards</a></li></ul></div>
+      <div><h3 class="footer-heading">Stay in the loop</h3><form><input type="email" placeholder="Email address" class="footer-input" /><button class="footer-btn">Subscribe</button></form></div>
+    </div>
+    <div class="copyright">© 2026 <span>Fresh & Clean</span> – professional steam cleaning.</div>
+  </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  /* ========== NAV / THEME / MENU LOGIC ========== */
+  const htmlEl = document.documentElement;
+  const desktopTheme = document.getElementById('desktop-theme-toggle');
+  const mobileTheme = document.getElementById('mobile-theme-toggle');
+  const desktopIcon = document.getElementById('desktop-theme-icon');
+  const mobileIcon = document.getElementById('mobile-theme-icon');
+  const desktopRtl = document.getElementById('desktop-rtl-toggle');
+  const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+  let theme = localStorage.getItem('theme') || 'light';
+  htmlEl.setAttribute('data-theme', theme);
+  if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+  function toggleTheme() {
+    let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    let newTheme = isDark ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+    if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+    if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+  }
+  if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+  if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+  function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+  if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+  if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+  function toggleDesktopDropdown(id) { document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); document.getElementById(id).classList.toggle('active'); }
+  window.toggleDesktopDropdown = toggleDesktopDropdown;
+
+  function toggleMobileDropdown(id) { document.getElementById(id).classList.toggle('active'); }
+  window.toggleMobileDropdown = toggleMobileDropdown;
+
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('close-mobile-menu');
+  if(menuBtn) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.add('active'); }); }
+  if(closeBtn) { closeBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.remove('active'); }); }
+  mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) { mobileMenu.classList.remove('active'); } });
+
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => { if (window.scrollY > 300) scrollBtn.style.display = 'block'; else scrollBtn.style.display = 'none'; });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  window.addEventListener('resize', () => { if (window.innerWidth >= 1024) mobileMenu.classList.remove('active'); });
+
+  /* ========== BLOG ARTICLE DATA ========== */
+  const blogData = {
+    "carpet-signs": {
+      title: "5 Signs Your Carpet Needs Deep Cleaning",
+      category: "Guide",
+      date: "January 15, 2026",
+      readTime: "5 min read",
+      author: "Maya Chen",
+      heroImage: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "Is your carpet hiding dirt and allergens? Here are the top signs it's time for a professional steam clean.",
+      content: `
+        <p>Your carpet works hard every day — absorbing foot traffic, pet dander, spills, and dust. Even with regular vacuuming, dirt and allergens can settle deep into the fibers over time. But how do you know when it's time to call in the professionals?</p>
+        <p>Here are five clear signs your carpet is overdue for a deep steam clean.</p>
+
+        <h2>1. <span>Visible Stains</span> That Won't Come Out</h2>
+        <p>If you've tried spot-cleaning a stain multiple times and it's still visible, the stain has likely set deep into the carpet fibers. Professional steam cleaning uses high-temperature vapor to break down and extract stubborn stains that household cleaners can't reach.</p>
+
+        <h2>2. <span>Musty or Unpleasant Odors</span></h2>
+        <p>A fresh-smelling carpet is a clean carpet. If your room has a lingering musty, dusty, or pet-like odor — even after vacuuming — the source is likely embedded in the carpet padding or fibers. Steam cleaning eliminates odor-causing bacteria at the source.</p>
+
+        <h2>3. <span>Allergy Symptoms</span> Flaring Up Indoors</h2>
+        <p>If you or your family members are sneezing, coughing, or experiencing itchy eyes more often at home, your carpet may be harboring dust mites, pet dander, and pollen. Deep steam cleaning removes up to 99.9% of these allergens.</p>
+
+        <h2>4. <span>Matting or Flattened</span> Carpet Fibers</h2>
+        <p>When carpet fibers become flat and matted — especially in high-traffic areas — it's a sign that dirt and oil have weighed them down. Deep cleaning lifts and revives the fibers, restoring the carpet's original texture and appearance.</p>
+
+        <h2>5. It's Been <span>Over 12 Months</span> Since the Last Clean</h2>
+        <p>Even if your carpet looks clean, experts recommend professional deep cleaning every 6–12 months. Homes with pets, children, or allergy sufferers may benefit from more frequent cleaning. If it's been a year or more, it's definitely time.</p>
+
+        <blockquote>"A professional steam clean doesn't just make your carpet look better — it creates a healthier indoor environment for your whole family." — Maya Chen, Operations Manager</blockquote>
+
+        <h2>Ready for a <span>Deeper Clean</span>?</h2>
+        <p>If you've noticed any of these signs, don't wait. Our professional steam cleaning service is fast, eco-friendly, and guaranteed to leave your carpets visibly fresher and healthier. <a href="services.html">Explore our carpet cleaning service</a> or <a href="book.html">book online today</a>.</p>
+      `
+    },
+    "steam-science": {
+      title: "The Science Behind Steam Cleaning",
+      category: "News",
+      date: "January 10, 2026",
+      readTime: "6 min read",
+      author: "James Carter",
+      heroImage: "https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "Discover how high-temperature steam eliminates 99.9% of bacteria without harsh chemicals.",
+      content: `
+        <p>Steam cleaning isn't just hot water — it's a powerful, science-backed cleaning method that's been trusted by hospitals, hotels, and professional cleaners for decades. But how exactly does it work, and why is it so effective?</p>
+
+        <h2>The <span>Science</span> in Simple Terms</h2>
+        <p>Steam cleaning works by heating water to a high temperature (typically 150–170°C at the nozzle) and directing it onto a surface under pressure. The heat does three things simultaneously:</p>
+        <ol>
+          <li><strong>Dissolves</strong> dirt, oils, and grime that are stuck to fibers or surfaces.</li>
+          <li><strong>Sanitizes</strong> by killing bacteria, viruses, and dust mites on contact.</li>
+          <li><strong>Loosens</strong> the bond between dirt and the surface, allowing it to be easily extracted.</li>
+        </ol>
+
+        <h2>Why <span>99.9% of Bacteria</span> Are Eliminated</h2>
+        <p>Most bacteria and viruses cannot survive temperatures above 60°C. Our steam cleaning reaches temperatures well above that threshold, ensuring that harmful microorganisms — including E. coli, Salmonella, and dust mites — are destroyed on contact. No chemical disinfectants are needed.</p>
+
+        <blockquote>"Heat is one of the oldest and most reliable forms of sterilization. Steam cleaning harnesses this power for everyday home surfaces."</blockquote>
+
+        <h2>How <span>Extraction</span> Completes the Process</h2>
+        <p>After the steam loosens the dirt, a powerful vacuum extraction system pulls the moisture, dirt, and allergens out of the carpet or upholstery. This is why steam-cleaned carpets dry faster and feel fresher — the dirt is physically removed, not just pushed around.</p>
+
+        <h2>Steam Cleaning vs. <span>Traditional Cleaning</span></h2>
+        <p>Traditional cleaning methods often rely on chemical detergents that leave residue behind. Over time, that residue attracts new dirt, making surfaces get dirty faster. Steam cleaning uses only water — no chemicals, no residue, and no risk to children or pets.</p>
+
+        <h2>The <span>Bottom Line</span></h2>
+        <p>Steam cleaning is one of the most effective, safe, and eco-friendly cleaning methods available. If you want to learn more about our process, <a href="services.html">explore our services</a> or <a href="contact.html">get in touch</a> with our team.</p>
+      `
+    },
+    "eco-friendly": {
+      title: "Why Eco-Friendly Cleaning Matters",
+      category: "Eco",
+      date: "January 5, 2026",
+      readTime: "4 min read",
+      author: "Emily Rivera",
+      heroImage: "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "How chemical-free steam cleaning protects your family, pets, and the planet.",
+      content: `
+        <p>When you clean your home, you want it to be fresh — not full of chemical residue. Yet many conventional cleaning products contain harsh detergents, fragrances, and solvents that can be harmful to your health and the environment.</p>
+
+        <h2>The <span>Hidden Costs</span> of Chemical Cleaners</h2>
+        <p>Many traditional carpet and upholstery cleaners contain volatile organic compounds (VOCs), synthetic fragrances, and surfactants. These can:</p>
+        <ul>
+          <li>Trigger allergies and asthma symptoms</li>
+          <li>Leave sticky residue that attracts more dirt</li>
+          <li>Harm aquatic life when washed down drains</li>
+          <li>Be dangerous if ingested by pets or children</li>
+        </ul>
+
+        <h2>Why <span>Steam Cleaning</span> Is Different</h2>
+        <p>Steam cleaning uses only water — no chemicals, no detergents, no fragrances. The high-temperature vapor does all the work, lifting dirt and killing bacteria naturally. This means:</p>
+        <ul>
+          <li><strong>Safe for children and pets</strong> — no toxic residue on floors or furniture</li>
+          <li><strong>Safe for allergy sufferers</strong> — no fragrances or VOCs</li>
+          <li><strong>Better for the planet</strong> — no chemical runoff or plastic bottles</li>
+        </ul>
+
+        <blockquote>"Eco-friendly cleaning isn't a luxury — it's a smarter, safer way to care for your home and the people in it."</blockquote>
+
+        <h2>How to <span>Choose</span> an Eco-Friendly Cleaner</h2>
+        <p>Not all "green" cleaning services are truly chemical-free. When choosing a professional cleaner, ask:</p>
+        <ol>
+          <li>Do you use detergents or only steam?</li>
+          <li>Are your products safe for pets and children?</li>
+          <li>Do you offer fragrance-free options?</li>
+          <li>What certifications or guarantees do you have?</li>
+        </ol>
+
+        <h2>Our <span>Commitment</span></h2>
+        <p>At Fresh & Clean, we've been chemical-free since day one. Every job uses pure, high-temperature steam — nothing else. <a href="about.html">Learn more about our story</a> or <a href="book.html">book a cleaning today</a>.</p>
+      `
+    },
+    "sofa-care": {
+      title: "How to Keep Your Sofa Fresh Between Cleanings",
+      category: "Tips",
+      date: "December 28, 2025",
+      readTime: "5 min read",
+      author: "David Kim",
+      heroImage: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "Simple daily habits that extend the life of your upholstery and keep it looking new.",
+      content: `
+        <p>Your sofa is one of the most-used pieces of furniture in your home. It's where you relax, watch TV, entertain guests, and sometimes even eat. All that activity takes a toll — but a few simple habits can keep your sofa fresher for longer.</p>
+
+        <h2>1. <span>Vacuum Weekly</span></h2>
+        <p>Even if your sofa doesn't look dirty, it collects dust, crumbs, and pet hair daily. Use a soft brush attachment and vacuum the seat cushions, backrests, and crevices once a week. This prevents dirt from settling deep into the fabric.</p>
+
+        <h2>2. <span>Rotate Cushions</span> Regularly</h2>
+        <p>If your sofa has removable cushions, flip and rotate them every few weeks. This distributes wear evenly and prevents one side from looking more worn than the other.</p>
+
+        <h2>3. <span>Blot Spills</span> Immediately</h2>
+        <p>If something spills, blot — don't rub. Rubbing pushes the liquid deeper into the fabric. Use a clean white cloth and press firmly, working from the outside of the stain inward.</p>
+
+        <h2>4. <span>Keep Out of Direct Sunlight</span></h2>
+        <p>Prolonged sun exposure can fade and weaken upholstery fabric. If your sofa sits near a window, use curtains or blinds during peak sunlight hours.</p>
+
+        <h2>5. <span>Avoid Harsh Chemicals</span></h2>
+        <p>Many commercial upholstery cleaners contain harsh detergents that can damage delicate fabrics or leave sticky residue. Stick to gentle, water-based cleaning or professional steam cleaning.</p>
+
+        <h2>6. Schedule <span>Professional Cleaning</span></h2>
+        <p>Even with the best at-home care, your sofa needs professional steam cleaning every 6–12 months. Our team deep-cleans the fabric, removes stubborn stains, and eliminates odors without harsh chemicals. <a href="services.html">Explore our sofa cleaning service</a>.</p>
+
+        <blockquote>"Small habits go a long way. A minute of care each week can add years to your sofa's life."</blockquote>
+      `
+    },
+    "mattress-clean": {
+      title: "Why You Should Clean Your Mattress Every 6 Months",
+      category: "Guide",
+      date: "December 20, 2025",
+      readTime: "4 min read",
+      author: "Maya Chen",
+      heroImage: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "Dust mites, sweat, and allergens build up fast. Here's why regular mattress cleaning matters.",
+      content: `
+        <p>You spend about a third of your life in bed — but how often do you think about what's living in your mattress? Dust mites, dead skin cells, sweat, and allergens build up quickly, even if your mattress looks clean.</p>
+
+        <h2>What's <span>Hiding</span> in Your Mattress?</h2>
+        <p>A typical mattress can contain:</p>
+        <ul>
+          <li><strong>Millions of dust mites</strong> — microscopic creatures that feed on dead skin cells</li>
+          <li><strong>Sweat and oils</strong> — absorbed night after night</li>
+          <li><strong>Allergens</strong> — pollen and pet dander that settle into the fabric</li>
+          <li><strong>Bacteria</strong> — from sweat and skin contact</li>
+        </ul>
+
+        <h2>Why <span>6 Months</span> Matters</h2>
+        <p>Experts recommend professional mattress cleaning every 6 months to keep these allergens under control. Homes with pets, allergy sufferers, or young children may benefit from more frequent cleaning.</p>
+
+        <h2>Signs Your Mattress <span>Needs Cleaning</span></h2>
+        <ol>
+          <li>You wake up with a stuffy nose or itchy eyes</li>
+          <li>Your mattress has visible stains or yellowing</li>
+          <li>You notice a musty or unpleasant odor</li>
+          <li>It's been over a year since the last cleaning</li>
+        </ol>
+
+        <h2>What <span>Professional Cleaning</span> Does</h2>
+        <p>Our deep steam cleaning uses high-temperature vapor to kill dust mites and bacteria, removes stains, and eliminates odors — all without harsh chemicals. The result is a fresher, healthier sleep environment. <a href="services.html">Explore our mattress cleaning service</a>.</p>
+
+        <blockquote>"A clean mattress isn't just about hygiene — it's about sleeping better and feeling better every day."</blockquote>
+      `
+    },
+    "car-interior": {
+      title: "How to Keep Your Car Interior Spotless",
+      category: "Tips",
+      date: "December 12, 2025",
+      readTime: "5 min read",
+      author: "David Kim",
+      heroImage: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1920&auto=format&fit=crop",
+      excerpt: "From pet hair to spilled coffee — practical tips to maintain a fresh car interior year-round.",
+      content: `
+        <p>Your car is like a second home — especially if you commute daily or have kids and pets. Keeping the interior clean can feel like a losing battle, but a few simple habits make a big difference.</p>
+
+        <h2>1. <span>Keep a Small Bin</span> in the Car</h2>
+        <p>Most car clutter comes from small items — receipts, wrappers, coffee cups. A small bin or bag in the passenger footwell makes it easy to keep things tidy.</p>
+
+        <h2>2. <span>Vacuum Weekly</span></h2>
+        <p>Dirt and crumbs work their way into seat crevices and carpet fibers. A quick weekly vacuum prevents buildup and keeps the interior looking sharp.</p>
+
+        <h2>3. <span>Use Seat Covers</span> (Especially with Pets)</h2>
+        <p>If you have pets or kids, seat covers are a lifesaver. They protect the upholstery from hair, spills, and scratches — and are easy to remove and wash.</p>
+
+        <h2>4. <span>Wipe Down Surfaces</span> Regularly</h2>
+        <p>Dashboard, door panels, and center console collect dust and fingerprints. A microfiber cloth and gentle cleaner once a week keeps them looking fresh.</p>
+
+        <h2>5. Treat <span>Spills Immediately</span></h2>
+        <p>Blot — don't rub — spills on seats and carpets. Rubbing pushes the stain deeper and can damage the fabric. Use a clean cloth and press firmly.</p>
+
+        <h2>6. Schedule <span>Professional Cleaning</span></h2>
+        <p>Even with regular care, your car interior needs a deep clean every 6–12 months. Our mobile steam cleaning service comes to your location and deep-cleans seats, carpets, mats, and headliners — removing pet hair, odors, and stains without harsh chemicals. <a href="services.html">Explore our car interior cleaning service</a>.</p>
+
+        <blockquote>"A clean car interior makes every drive more enjoyable. A little effort goes a long way."</blockquote>
+      `
+    }
+  };
+
+  /* ========== RENDER DYNAMIC ARTICLE ========== */
+  function renderArticle(postKey) {
+    const data = blogData[postKey];
+    const container = document.getElementById('dynamic-content');
+
+    if (!data) {
+      container.innerHTML = `
+        <section class="error-state">
+          <i class="fas fa-exclamation-circle"></i>
+          <h2>Article Not Found</h2>
+          <p>We couldn't find the article you're looking for. Please browse our blog for more insights.</p>
+          <a href="blog.html" class="btn-primary" style="display:inline-flex; width:auto; padding:0.9rem 2.4rem; text-decoration:none;">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+          </a>
+        </section>
+      `;
+      document.title = "Article Not Found | Fresh & Clean";
+      return;
+    }
+
+    document.title = data.title + " | Fresh & Clean Blog";
+
+    // Related posts (other than current)
+    const relatedHTML = Object.keys(blogData)
+      .filter(k => k !== postKey)
+      .slice(0, 4)
+      .map(k => `<li><a href="blog-details.html?post=${k}"><i class="fas fa-chevron-right"></i> ${blogData[k].title}</a></li>`)
+      .join('');
+
+    container.innerHTML = `
+      <!-- ARTICLE HERO -->
+      <section class="article-hero">
+        <div class="article-hero-bg" style="background-image: url('${data.heroImage}');"></div>
+        <div class="article-hero-overlay"></div>
+        <div class="container">
+          <div class="article-hero-content">
+            <span class="article-tag">${data.category}</span>
+            <h1>${data.title}</h1>
+            <div class="article-meta">
+              <span><i class="fas fa-user"></i> ${data.author}</span>
+              <span><i class="fas fa-calendar"></i> ${data.date}</span>
+              <span><i class="fas fa-clock"></i> ${data.readTime}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTICLE BODY -->
+      <section class="article-body">
+        <div class="container">
+          <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+          <div class="article-layout">
+
+            <!-- MAIN CONTENT -->
+            <article class="article-content">
+              ${data.content}
+            </article>
+
+            <!-- SIDEBAR -->
+            <aside class="article-sidebar">
+              <div class="sidebar-card">
+                <h3><i class="fas fa-spray-can"></i> Need a Deep Clean?</h3>
+                <p>Our professional steam cleaning removes stains, allergens, and odors — safely and effectively.</p>
+                <a href="book.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Now</a>
+              </div>
+
+              <div class="sidebar-card">
+                <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
+                <ul class="related-list">
+                  ${relatedHTML}
+                </ul>
+              </div>
+
+              <div class="sidebar-card">
+                <h3><i class="fas fa-headset"></i> Questions?</h3>
+                <p>Our team is happy to help. Reach out anytime.</p>
+                <a href="contact.html" class="btn-primary" style="background:transparent; border:2px solid var(--accent); color:var(--text-main); box-shadow:none;">
+                  <i class="fas fa-envelope"></i> Contact Us
+                </a>
+              </div>
+            </aside>
+
+          </div>
+        </div>
+      </section>
+    `;
+
+    // Re-apply hover styles for the transparent button (dark mode)
+    const transparentBtn = container.querySelector('.sidebar-card .btn-primary[style*="transparent"]');
+    if (transparentBtn) {
+      transparentBtn.addEventListener('mouseenter', () => {
+        transparentBtn.style.background = 'var(--accent)';
+        transparentBtn.style.color = 'var(--white)';
+      });
+      transparentBtn.addEventListener('mouseleave', () => {
+        transparentBtn.style.background = 'transparent';
+        transparentBtn.style.color = 'var(--text-main)';
+      });
+    }
+  }
+
+  /* ========== GET URL PARAM & INITIALIZE ========== */
+  const urlParams = new URLSearchParams(window.location.search);
+  const postParam = urlParams.get('post');
+  renderArticle(postParam);
+</script>
+</body>
+</html>

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Professional carpet & upholstery steam cleaning. Deep clean, fresh results, happy homes." />
+  <title>Fresh & Clean | Carpet & Upholstery Steam Cleaning</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPScjMjBCOEIwJy8+PHBhdGggZD0nTTMwIDUwIEw1MCA3MCBMNzAgMzAnIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nOCcgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+PC9zdmc+" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts: Inter + Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- RESET & VARIABLES (Black / White / Teal) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --accent: #20B8B0;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F0F9F9;
+      --text-main: #000000;
+      --text-heading: #000000;
+      --card-bg: #FFFFFF;
+      --border-light: #E2E8F0;
+      --navbar-bg: rgba(255, 255, 255, 0.85);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      /* Nav specific */
+      --nav-text: #333333;
+      --nav-hover-text: #FFFFFF;
+      --dropdown-bg: #FFFFFF;
+      --dropdown-text: #333333;
+    }
+    [data-theme="dark"] {
+      --bg-primary: #111111;
+      --bg-secondary: #1A1A1A;
+      --text-main: #EAEAEA;
+      --text-heading: #FAFAFA;
+      --card-bg: #222222;
+      --border-light: #3A3A3A;
+      --navbar-bg: rgba(17, 17, 17, 0.9);
+      /* Nav specific dark mode */
+      --nav-text: #EAEAEA;
+      --nav-hover-text: #FFFFFF;
+      --dropdown-bg: #222222;
+      --dropdown-text: #EAEAEA;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.5;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    a { text-decoration: none; }
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ----- FLOATING / STICKY NAVBAR (glassmorphism) ----- */
+    .navbar-container {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 1300px;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 60px;
+      border: 1px solid rgba(32, 184, 176, 0.3);
+      box-shadow: var(--shadow);
+      padding: 0.5rem 1.5rem;
+      z-index: 1000;
+      transition: all 0.25s ease;
+    }
+    .navbar-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    /* brand */
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .logo:hover { transform: scale(1.03); }
+    .logo-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      background: rgba(32, 184, 176, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span {
+      color: var(--accent);
+    }
+    .logo-tagline {
+      font-size: 0.55rem;
+      color: var(--nav-text);
+      display: block;
+      margin-top: -0.15rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* desktop pill nav */
+    .desktop-nav {
+      display: none;
+      background: rgba(0, 0, 0, 0.04);
+      padding: 0.2rem 0.5rem;
+      border-radius: 60px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      align-items: center;
+    }
+    [data-theme="dark"] .desktop-nav {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .desktop-nav .nav-link {
+      color: var(--nav-text);
+      padding: 0.45rem 1.1rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .desktop-nav .nav-link:hover {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(32, 184, 176, 0.3);
+    }
+    .desktop-nav .nav-link.active {
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 600;
+    }
+    .desktop-nav .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .desktop-nav .dropdown-menu {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      min-width: 170px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.25s;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      padding: 0.3rem 0;
+    }
+    [data-theme="dark"] .desktop-nav .dropdown-menu {
+      box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+    }
+    .desktop-nav .dropdown:hover .dropdown-menu,
+    .desktop-nav .dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .desktop-nav .dropdown-item {
+      display: block;
+      padding: 8px 20px;
+      color: var(--dropdown-text);
+      transition: 0.2s;
+      border-radius: 12px;
+      margin: 2px 6px;
+    }
+    .desktop-nav .dropdown-item:hover {
+      background: var(--accent);
+      color: var(--white);
+      padding-left: 28px;
+    }
+    .dropdown-arrow {
+      font-size: 0.6rem;
+      transition: 0.2s;
+      margin-left: 4px;
+    }
+    .desktop-nav .dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* right icons + buttons */
+    .navbar-right {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .icon-btn {
+      width: 2.2rem;
+      height: 2.2rem;
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--nav-text);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    [data-theme="dark"] .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .icon-btn:hover {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+    .login-btn {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.4rem 1.1rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: 0.2s;
+      border: 1px solid transparent;
+    }
+    .login-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+    [data-theme="dark"] .login-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* mobile menu button */
+    .mobile-menu-btn {
+      display: flex;
+      color: var(--nav-text);
+      font-size: 1.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+    }
+
+    /* ----- MOBILE MENU (full screen) ----- */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      z-index: 9999;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-menu.active { transform: translateX(0); }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .mobile-menu-close {
+      color: white;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .mobile-menu-items {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-menu-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      border-bottom: 1px solid #2a2a2a;
+      transition: 0.2s;
+      gap: 0.8rem;
+    }
+    .mobile-menu-item i { color: var(--accent); width: 1.8rem; }
+    .mobile-menu-item:hover { background: #1f1f1f; padding-left: 0.5rem; }
+    .mobile-menu-item.active {
+      background: #1f1f1f;
+      padding-left: 0.5rem;
+      border-left: 3px solid var(--accent);
+      color: white;
+    }
+    .mobile-dropdown-btn.active { color: var(--accent); }
+    .mobile-dropdown-content a.active { color: var(--accent); font-weight: 700; }
+    .mobile-dropdown { border-bottom: 1px solid #2a2a2a; }
+    .mobile-dropdown-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 1rem 0;
+      cursor: pointer;
+    }
+    .mobile-dropdown-btn i:first-child { color: var(--accent); width: 1.8rem; }
+    .mobile-dropdown-btn .fa-chevron-down { color: var(--accent); transition: 0.2s; }
+    .mobile-dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #1a1a1a;
+      border-radius: 16px;
+      margin-bottom: 0.5rem;
+    }
+    .mobile-dropdown-content.active {
+      max-height: 200px;
+      padding: 0.75rem 0;
+    }
+    .mobile-dropdown-content a {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1.5rem 0.7rem 3rem;
+      color: #ccc;
+      transition: 0.2s;
+    }
+    .mobile-dropdown-content a:hover {
+      background: var(--accent);
+      color: var(--black);
+    }
+    .mobile-action-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      border-bottom: 1px solid #2a2a2a;
+      background: transparent;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      gap: 0.8rem;
+    }
+    .mobile-action-item i { color: var(--accent); width: 1.8rem; }
+    .mobile-action-item:hover { background: #1f1f1f; padding-left: 0.5rem; }
+    .mobile-separator {
+      margin: 1rem 0 0.5rem 0;
+      border-top: 2px solid #2f2f2f;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      background: var(--bg-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      padding-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22 width=%2260%22 height=%2260%22><circle cx=%2230%22 cy=%2230%22 r=%2220%22 fill=%22none%22 stroke=%22%2320B8B0%22 stroke-width=%221.2%22 /></svg>');
+      background-size: 60px 60px;
+    }
+    .hero-grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero h1 span { color: var(--accent); }
+    @media (min-width: 640px) { .hero h1 { font-size: 3.4rem; } }
+    @media (min-width: 768px) { .hero h1 { font-size: 4rem; } }
+    @media (min-width: 1024px) { .hero h1 { font-size: 4.8rem; } }
+    .hero-text {
+      font-size: 1.2rem;
+      color: var(--text-main);
+      opacity: 0.85;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 20px -8px rgba(32, 184, 176, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--black);
+      color: white;
+      transform: translateY(-3px);
+    }
+    [data-theme="dark"] .btn-primary:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+    .btn-outline {
+      border: 2px solid var(--accent);
+      color: var(--text-heading);
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .hero-image {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 30px 50px -12px rgba(0,0,0,0.4);
+      border: 3px solid var(--accent);
+      max-width: 440px;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      max-height: 350px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .order-1 { order: 1; }
+    .order-2 { order: 2; }
+    @media (min-width: 1024px) {
+      .order-1 { order: 1; }
+      .order-2 { order: 2; }
+    }
+
+    /* ----- FEATURES ----- */
+    .features-section {
+      background: var(--bg-secondary);
+      padding: 5rem 0;
+    }
+    .features-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .feature-card {
+      background: var(--card-bg);
+      padding: 2.2rem 1.8rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      border: 2px solid var(--border-light);
+      transition: 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(32, 184, 176, 0.08);
+    }
+    .feature-card .icon {
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .feature-card p { opacity: 0.75; font-size: 0.95rem; }
+
+    /* ----- SERVICES / BESTSELLERS ----- */
+    .services-section {
+      background: var(--bg-primary);
+      padding: 5rem 0;
+    }
+    .services-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 1.5rem 1rem;
+      border-radius: 1.5rem;
+      border: 2px solid var(--border-light);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+    .service-card .service-img {
+      width: 100%;
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .service-card .price { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .service-card .old-price {
+      text-decoration: line-through;
+      opacity: 0.4;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+    .service-card .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.2rem 0.9rem;
+      border-radius: 60px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .service-card .badge-alt {
+      background: var(--black);
+      color: var(--white);
+    }
+    [data-theme="dark"] .service-card .badge-alt {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* ----- TESTIMONIALS ----- */
+    .testimonials-section {
+      background: var(--bg-secondary);
+      padding: 5rem 0;
+    }
+    .testimonials-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .testimonial-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      border: 2px solid var(--border-light);
+      transition: 0.3s;
+    }
+    .testimonial-card:hover { border-color: var(--accent); }
+    .testimonial-card .stars { color: #F59E0B; margin-bottom: 0.75rem; }
+    .testimonial-card .quote { font-style: italic; opacity: 0.85; font-size: 0.95rem; }
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-size: cover;
+      border: 2px solid var(--accent);
+    }
+    .testimonial-card .author .name { font-weight: 700; }
+    .testimonial-card .author .role { font-size: 0.8rem; opacity: 0.6; }
+
+    /* ----- CTA BANNER ----- */
+    .cta-banner {
+      background: var(--black);
+      padding: 4rem 0;
+      text-align: center;
+      border-top: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+    }
+    .cta-banner h2 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .cta-banner h2 span { color: var(--accent); }
+    .cta-banner p {
+      font-size: 1.125rem;
+      max-width: 36rem;
+      margin: 0 auto 2rem;
+      color: #ccc;
+    }
+    .cta-banner .btn-white {
+      background: var(--accent);
+      color: var(--white);
+      padding: 1rem 2.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .cta-banner .btn-white:hover {
+      background: white;
+      color: var(--black);
+    }
+
+    /* ----- BLOG ----- */
+    .blog-section {
+      background: var(--bg-primary);
+      padding: 5rem 0;
+    }
+    .blog-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .blog-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 2px solid var(--border-light);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .blog-card .blog-img {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    .blog-card .blog-content { 
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .blog-card .blog-tag {
+      display: inline-block;
+      background: rgba(32, 184, 176, 0.12);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.9rem;
+      border-radius: 60px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .blog-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .blog-card p { opacity: 0.75; font-size: 0.9rem; }
+    .blog-card .read-more {
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: auto;
+      transition: 0.2s;
+    }
+    .blog-card .read-more:hover { gap: 0.6rem; }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      background: var(--black);
+      color: white;
+      padding: 4rem 0;
+      border-top: 3px solid var(--accent);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo-icon {
+      width: 3rem;
+      height: 3rem;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-size: 1.6rem;
+    }
+    .footer-logo-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: white;
+    }
+    .footer-logo-text span { color: var(--accent); }
+    .footer-tagline {
+      font-size: 0.6rem;
+      color: #aaa;
+      display: block;
+      margin-top: -0.2rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    .footer-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: #9ca3af; transition: 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 60px;
+      margin-bottom: 0.5rem;
+      border: none;
+      background: #222;
+      color: white;
+    }
+    .footer-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.75rem;
+      border-radius: 60px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .footer-btn:hover { background: white; color: var(--black); }
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.875rem;
+    }
+    .copyright span { color: var(--accent); }
+
+    /* ----- SCROLL TOP ----- */
+    #scroll-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(32, 184, 176, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      z-index: 100;
+      display: none;
+    }
+    #scroll-top:hover { background: white; color: var(--black); }
+
+    /* responsive */
+    @media (min-width: 1024px) {
+      .desktop-nav { display: flex; }
+      .navbar-right { display: flex; }
+      .mobile-menu-btn { display: none; }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.7s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section-title span { color: var(--accent); }
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 40rem;
+      margin: 0 auto 3rem;
+    }
+    @media (min-width: 768px) {
+      .section-title { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== FLOATING / STICKY NAVBAR ===== -->
+<nav class="navbar-container" id="navbar">
+  <div class="container navbar-flex">
+    <!-- left: brand -->
+    <div class="brand-group">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-spray-can"></i></div>
+        <div>
+          <div class="logo-text">Fresh<span>&Clean</span></div>
+          <span class="logo-tagline">steam cleaning</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- center: pill nav -->
+    <div class="desktop-nav">
+      <!-- HOME DROPDOWN -->
+      <div class="dropdown" id="home-dropdown">
+        <span class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+        <div class="dropdown-menu">
+          <a href="index.html" class="dropdown-item">Home I</a>
+          <a href="home2.html" class="dropdown-item">Home II</a>
+        </div>
+      </div>
+      
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- DASHBOARD DROPDOWN (Admin & Client) -->
+      <div class="dropdown" id="dashboard-dropdown">
+        <span class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+        <div class="dropdown-menu">
+          <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+          <a href="client-dashboard.html" class="dropdown-item">Client Dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: icons + buttons -->
+    <div class="navbar-right">
+      <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-circle-half-stroke" id="desktop-theme-icon"></i></button>
+      <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-right-left"></i></button>
+      <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+
+    <!-- mobile hamburger -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- ===== MOBILE MENU ===== -->
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fas fa-spray-can"></i></div>
+      <div>
+        <div class="logo-text">Fresh<span>&Clean</span></div>
+        <span class="logo-tagline">steam cleaning</span>
+      </div>
+    </a>
+    <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mobile-menu-items">
+    
+    <!-- Mobile Home Dropdown -->
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn active" onclick="toggleMobileDropdown('home-mobile')">
+        <span><i class="fas fa-home"></i> Home</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div id="home-mobile" class="mobile-dropdown-content active">
+        <a href="index.html" class="active">Home I</a>
+        <a href="home2.html">Home II</a>
+      </div>
+    </div>
+
+    <a href="services.html" class="mobile-menu-item"><i class="fas fa-broom"></i> Services</a>
+    <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+    <a href="blog.html" class="mobile-menu-item"><i class="fas fa-newspaper"></i> Blog</a>
+    <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+    
+    <!-- Mobile Dashboard Dropdown -->
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-mobile')">
+        <span><i class="fas fa-columns"></i> Dashboard</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div id="dashboard-mobile" class="mobile-dropdown-content">
+        <a href="admin-dashboard.html">Admin Dashboard</a>
+        <a href="client-dashboard.html">Client Dashboard</a>
+      </div>
+    </div>
+
+    <div class="mobile-separator"></div>
+    <button class="mobile-action-item" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</button>
+    <button class="mobile-action-item" onclick="window.location.href='register.html'"><i class="fas fa-user-plus"></i> Register</button>
+    <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-right-left"></i> RTL</button>
+    <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke" id="mobile-theme-icon"></i> Theme</button>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="container relative" style="z-index:2;">
+    <div class="hero-grid">
+      <div class="fade-in-up order-2 lg:order-1">
+        <span style="color:var(--accent); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:0.5rem;">🧼 professional steam cleaning</span>
+        <h1>Fresh carpets. <span>Cleaner living.</span></h1>
+        <p class="hero-text">Deep steam cleaning for carpets, sofas and upholstery. Bringing freshness back to your home with eco-friendly, medical-grade steam technology.</p>
+        <div class="btn-group">
+          <a href="book.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book a cleaning</a>
+          <a href="about.html" class="btn-outline"><i class="fas fa-info-circle"></i> Learn more</a>
+        </div>
+      </div>
+      <div class="hero-image order-1 lg:order-2">
+        <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=1200&auto=format&fit=crop" alt="Professional carpet steam cleaning" fetchpriority="high" decoding="sync" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section">
+  <div class="container">
+    <h2 class="section-title">Why <span>Fresh & Clean</span></h2>
+    <p class="section-subtitle">Trusted by homeowners and businesses for deep, hygienic steam cleaning.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-shield-virus"></i></div>
+        <h3>Deep Steam Clean</h3>
+        <p>High-temperature steam eliminates 99.9% of bacteria, dust mites, and allergens.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-leaf"></i></div>
+        <h3>Eco-Friendly</h3>
+        <p>Chemical-free cleaning that's safe for children, pets, and the environment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-clock"></i></div>
+        <h3>Quick Dry</h3>
+        <p>Advanced extraction leaves carpets dry within hours, not days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services-section" style="padding:80px 20px;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+
+    <h2 class="section-title" style="text-align:center; font-size:38px; margin:0 0 12px; font-weight:800;">
+      Our <span style="color:#20B8B0;">Cleaning</span> Services
+    </h2>
+
+    <p class="section-subtitle" style="text-align:center; max-width:650px; margin:0 auto 45px; font-size:16px; line-height:1.6;">
+      From carpets to upholstery, we deliver a deep, refreshing clean for every surface.
+    </p>
+
+    <div class="services-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:25px;">
+
+      <!-- Service 1 -->
+      <div class="service-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="service-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop" alt="Carpet Cleaning" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:20px;">
+          <span class="badge" style="display:inline-block; background:#20B8B0; color:#fff; padding:7px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Most Popular
+          </span>
+          <h4 style="font-size:20px; margin:5px 0 12px; font-weight:700;">Carpet Cleaning</h4>
+          <div>
+            <span class="price" style="font-size:21px; font-weight:800; color:#20B8B0;">From $49</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="service-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop" alt="Sofa Cleaning" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:20px;">
+          <span class="badge badge-alt" style="display:inline-block; background:#000; color:#fff; padding:7px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Deep Clean
+          </span>
+          <h4 style="font-size:20px; margin:5px 0 12px; font-weight:700;">Sofa Cleaning</h4>
+          <div>
+            <span class="price" style="font-size:21px; font-weight:800; color:#20B8B0;">From $69</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="service-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?q=80&w=800&auto=format&fit=crop" alt="Upholstery Cleaning" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:20px;">
+          <span class="badge badge-alt" style="display:inline-block; background:#000; color:#fff; padding:7px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Premium
+          </span>
+          <h4 style="font-size:20px; margin:5px 0 12px; font-weight:700;">Upholstery</h4>
+          <div>
+            <span class="price" style="font-size:21px; font-weight:800; color:#20B8B0;">From $59</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="service-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop" alt="Mattress Cleaning" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:20px;">
+          <span class="badge" style="display:inline-block; background:#20B8B0; color:#fff; padding:7px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Hygienic
+          </span>
+          <h4 style="font-size:20px; margin:5px 0 12px; font-weight:700;">Mattress Cleaning</h4>
+          <div>
+            <span class="price" style="font-size:21px; font-weight:800; color:#20B8B0;">From $79</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section">
+  <div class="container">
+    <h2 class="section-title">Happy <span>Customers</span></h2>
+    <p class="section-subtitle">Real reviews from homeowners who trust our steam cleaning.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="quote">"My carpets look brand new! The team was professional, and the steam cleaning removed years of stains. Highly recommended."</p>
+        <div class="author">
+          <div class="avatar" style="background-image:url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+          <div>
+            <div class="name">Sarah M.</div>
+            <div class="role">Homeowner</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="quote">"I have two dogs and was worried about odors. After the steam clean, the sofa smells fresh and feels amazing. Worth every penny."</p>
+        <div class="author">
+          <div class="avatar" style="background-image:url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+          <div>
+            <div class="name">David K.</div>
+            <div class="role">Pet Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="quote">"The team was punctual and courteous. The eco-friendly steam cleaning left no chemical smell. I'll definitely book again."</p>
+        <div class="author">
+          <div class="avatar" style="background-image:url('https://randomuser.me/api/portraits/women/68.jpg');"></div>
+          <div>
+            <div class="name">Emily R.</div>
+            <div class="role">Parent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a <span>deep clean</span>?</h2>
+    <p>Book your professional steam cleaning today. Free quotes and flexible scheduling available.</p>
+    <a href="book.html" class="btn-white"><i class="fas fa-calendar-check"></i> Book now</a>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section class="blog-section" style="padding:80px 20px;">
+  <div class="container" style="max-width:1200px; margin:auto;">
+
+    <h2 class="section-title" style="text-align:center; font-size:38px; margin:0 0 12px; font-weight:800;">
+      Cleaning <span style="color:#20B8B0;">Insights</span>
+    </h2>
+
+    <p class="section-subtitle" style="text-align:center; max-width:650px; margin:0 auto 45px; font-size:16px; line-height:1.6;">
+      Tips, news, and guides from the carpet cleaning experts.
+    </p>
+
+    <div class="blog-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
+
+      <!-- Blog Card 1 -->
+      <div class="blog-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="blog-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=800&auto=format&fit=crop" alt="Home cleaning tips" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div class="blog-content" style="padding:24px;">
+          <span class="blog-tag" style="display:inline-block; background:#000; color:#fff; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Guide
+          </span>
+          <h4 style="font-size:21px; margin:5px 0 12px; font-weight:700; line-height:1.3;">
+            5 Signs Your Carpet Needs Deep Cleaning
+          </h4>
+          <p style="font-size:15px; color:var(--text-main); opacity:0.75; line-height:1.7; margin-bottom:18px;">
+            Is your carpet hiding dirt and allergens? Here are the top signs it's time for a professional steam clean.
+          </p>
+          <a href="#" class="read-more" style="color:#20B8B0; text-decoration:none; font-weight:700; font-size:14px;">
+            Read more <i class="fas fa-arrow-right" style="margin-left:5px;"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Blog Card 2 -->
+      <div class="blog-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="blog-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=800&auto=format&fit=crop" alt="Steam cleaning process" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div class="blog-content" style="padding:24px;">
+          <span class="blog-tag" style="display:inline-block; background:#20B8B0; color:#fff; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            News
+          </span>
+          <h4 style="font-size:21px; margin:5px 0 12px; font-weight:700; line-height:1.3;">
+            The Science Behind Steam Cleaning
+          </h4>
+          <p style="font-size:15px; color:var(--text-main); opacity:0.75; line-height:1.7; margin-bottom:18px;">
+            Discover how high-temperature steam eliminates 99.9% of bacteria without harsh chemicals.
+          </p>
+          <a href="#" class="read-more" style="color:#20B8B0; text-decoration:none; font-weight:700; font-size:14px;">
+            Read more <i class="fas fa-arrow-right" style="margin-left:5px;"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Blog Card 3 -->
+      <div class="blog-card" style="border:1px solid var(--border-light); border-radius:16px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.08); transition:0.3s;">
+        <div class="blog-img" style="height:240px; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=800&auto=format&fit=crop" alt="Eco-friendly cleaning" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div class="blog-content" style="padding:24px;">
+          <span class="blog-tag" style="display:inline-block; background:#000; color:#fff; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:12px;">
+            Eco
+          </span>
+          <h4 style="font-size:21px; margin:5px 0 12px; font-weight:700; line-height:1.3;">
+            Why Eco-Friendly Cleaning Matters
+          </h4>
+          <p style="font-size:15px; color:var(--text-main); opacity:0.75; line-height:1.7; margin-bottom:18px;">
+            How chemical-free steam cleaning protects your family, pets, and the planet.
+          </p>
+          <a href="#" class="read-more" style="color:#20B8B0; text-decoration:none; font-weight:700; font-size:14px;">
+            Read more <i class="fas fa-arrow-right" style="margin-left:5px;"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo" style="text-decoration: none;">
+          <div class="footer-logo-icon"><i class="fas fa-spray-can"></i></div>
+          <div>
+            <div class="footer-logo-text">Fresh<span>&Clean</span></div>
+            <span class="footer-tagline">steam cleaning</span>
+          </div>
+        </a>
+        <p style="color:#9ca3af;">Professional carpet and upholstery steam cleaning for a healthier, fresher home.</p>
+      </div>
+      <div><h3 class="footer-heading">Quick links</h3><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="book.html">Book Now</a></li></ul></div>
+      <div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="#">Service Areas</a></li><li><a href="faq.html">FAQs</a></li><li><a href="#">Gift Cards</a></li></ul></div>
+      <div><h3 class="footer-heading">Stay in the loop</h3><form><input type="email" placeholder="Email address" class="footer-input" /><button class="footer-btn">Subscribe</button></form></div>
+    </div>
+    <div class="copyright">© 2026 <span>Fresh & Clean</span> – professional steam cleaning.</div>
+  </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  // Theme / RTL / Dropdown logic
+  const htmlEl = document.documentElement;
+  const desktopTheme = document.getElementById('desktop-theme-toggle');
+  const mobileTheme = document.getElementById('mobile-theme-toggle');
+  const desktopIcon = document.getElementById('desktop-theme-icon');
+  const mobileIcon = document.getElementById('mobile-theme-icon');
+  const desktopRtl = document.getElementById('desktop-rtl-toggle');
+  const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+  let theme = localStorage.getItem('theme') || 'light';
+  htmlEl.setAttribute('data-theme', theme);
+  if (theme === 'dark') { htmlEl.classList.add('dark'); if(desktopIcon) desktopIcon.className = 'fas fa-sun'; if(mobileIcon) mobileIcon.className = 'fas fa-sun'; }
+
+  function toggleTheme() {
+    let isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    let newTheme = isDark ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') htmlEl.classList.add('dark'); else htmlEl.classList.remove('dark');
+    if (desktopIcon) desktopIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+    if (mobileIcon) mobileIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-circle-half-stroke';
+  }
+  if(desktopTheme) desktopTheme.addEventListener('click', toggleTheme);
+  if(mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+
+  function toggleRtl() { let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; htmlEl.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+  if(desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+  if(mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+  function toggleDesktopDropdown(id) {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    document.getElementById(id).classList.toggle('active');
+  }
+  window.toggleDesktopDropdown = toggleDesktopDropdown;
+
+  function toggleMobileDropdown(id) {
+    document.getElementById(id).classList.toggle('active');
+  }
+  window.toggleMobileDropdown = toggleMobileDropdown;
+
+  // mobile menu
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('close-mobile-menu');
+
+  if(menuBtn) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.add('active');
+    });
+  }
+  if(closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.remove('active');
+    });
+  }
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      mobileMenu.classList.remove('active');
+    }
+  });
+
+  // scroll top
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) scrollBtn.style.display = 'block';
+    else scrollBtn.style.display = 'none';
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) mobileMenu.classList.remove('active');
+  });
+</script>
+</body>
+</html>

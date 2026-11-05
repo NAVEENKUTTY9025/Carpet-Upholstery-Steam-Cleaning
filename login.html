@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Login to Fresh & Clean – professional carpet & upholstery steam cleaning." />
+  <title>Login | Fresh & Clean Steam Cleaning</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPScjMjBCOEIwJy8+PHBhdGggZD0nTTMwIDUwIEw1MCA3MCBMNzAgMzAnIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nOCcgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+PC9zdmc+" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black: #000; --white: #fff; --accent: #20B8B0;
+      --bg-primary: #fff; --bg-secondary: #F0F9F9;
+      --text-main: #000; --text-heading: #000;
+      --card-bg: #fff; --border-light: #E2E8F0;
+      --input-bg: #F8FAFC;
+      --shadow: 0 20px 60px rgba(0,0,0,0.08);
+      --icon-bg: rgba(0,0,0,0.04);
+      --icon-border: rgba(0,0,0,0.1);
+      --social-bg: #fff;
+      --social-border: #E2E8F0;
+    }
+    [data-theme="dark"] {
+      --bg-primary: #111; --bg-secondary: #1A1A1A;
+      --text-main: #EAEAEA; --text-heading: #FAFAFA;
+      --card-bg: #1A1A1A; --border-light: #3A3A3A;
+      --input-bg: #111;
+      --shadow: 0 20px 60px rgba(0,0,0,0.4);
+      --icon-bg: rgba(255,255,255,0.08);
+      --icon-border: rgba(255,255,255,0.1);
+      --social-bg: #222;
+      --social-border: #3A3A3A;
+    }
+
+    /* Lock viewport – no scroll */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      transition: background-color .3s, color .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    h1, h2, h3 { color: var(--text-heading); font-weight: 700; }
+    a { text-decoration: none; }
+
+    /* ===== TOP-RIGHT TOGGLES ===== */
+    .top-controls {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      display: flex;
+      gap: .5rem;
+      z-index: 100;
+    }
+    [dir="rtl"] .top-controls {
+      right: auto;
+      left: 1.2rem;
+    }
+    .top-btn {
+      width: 2.4rem;
+      height: 2.4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--icon-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: .2s;
+      font-size: .9rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .top-btn:hover {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+
+    /* ===== CENTERED LOGIN CARD ===== */
+    .login-wrapper {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr;
+      max-height: calc(100vh - 2rem);
+      transition: background-color .3s;
+    }
+    @media (min-width: 860px) {
+      .login-wrapper { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Left – brand panel (hidden on small screens) */
+    .login-brand {
+      display: none;
+      position: relative;
+      background: linear-gradient(135deg, #0a4f4a 0%, #20B8B0 100%);
+      padding: 2.5rem;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    @media (min-width: 860px) {
+      .login-brand { display: flex; }
+    }
+    .login-brand::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      top: -80px;
+      right: -80px;
+    }
+    .login-brand::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      bottom: -60px;
+      left: -60px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
+    }
+    .brand-logo-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+    .brand-logo-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-text span { color: #fff; opacity: .85; }
+    .brand-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+    }
+    .brand-content h2 {
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: .8rem;
+    }
+    .brand-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: .95rem;
+      line-height: 1.6;
+      max-width: 300px;
+    }
+    .brand-features {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+    .brand-features li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,0.9);
+    }
+    .brand-features i { color: #fff; font-size: .8rem; }
+    .brand-footer {
+      position: relative;
+      z-index: 2;
+      color: rgba(255,255,255,0.6);
+      font-size: .75rem;
+    }
+
+    /* Right – login form */
+    .login-form-panel {
+      padding: 2rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+    }
+    @media (max-width: 859px) {
+      .login-form-panel { padding: 2rem 1.5rem; }
+    }
+    .form-header { margin-bottom: 1.5rem; }
+    .form-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: .3rem;
+    }
+    .form-header h1 span { color: var(--accent); }
+    .form-header p { font-size: .85rem; opacity: .7; }
+
+    /* Social buttons */
+    .social-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .6rem;
+      margin-bottom: 1.3rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      padding: .65rem .4rem;
+      border-radius: .8rem;
+      border: 1.5px solid var(--social-border);
+      background: var(--social-bg);
+      color: var(--text-main);
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+      font-family: inherit;
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(32,184,176,0.15);
+    }
+    .social-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-main);
+      opacity: .5;
+      font-size: .75rem;
+      font-weight: 500;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    /* Form fields */
+    .field { margin-bottom: .9rem; }
+    .field label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-wrap i.input-icon {
+      position: absolute;
+      left: .9rem;
+      color: var(--accent);
+      font-size: .85rem;
+      pointer-events: none;
+    }
+    [dir="rtl"] .input-wrap i.input-icon {
+      left: auto;
+      right: .9rem;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: .75rem .9rem .75rem 2.5rem;
+      border-radius: .8rem;
+      border: 1.5px solid var(--border-light);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: .9rem;
+      outline: none;
+      transition: .2s;
+    }
+    [dir="rtl"] .input-wrap input {
+      padding: .75rem 2.5rem .75rem .9rem;
+    }
+    .input-wrap input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(32,184,176,0.12);
+    }
+    .toggle-password {
+      position: absolute;
+      right: .7rem;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      opacity: .5;
+      cursor: pointer;
+      font-size: .85rem;
+      padding: .2rem;
+    }
+    [dir="rtl"] .toggle-password {
+      right: auto;
+      left: .7rem;
+    }
+    .toggle-password:hover { opacity: 1; }
+
+    /* Remember / forgot */
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      font-size: .8rem;
+    }
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      cursor: pointer;
+      opacity: .8;
+    }
+    .remember input {
+      accent-color: var(--accent);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+    .forgot-link {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      padding: .8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: .95rem;
+      border: none;
+      cursor: pointer;
+      transition: .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      box-shadow: 0 10px 20px -6px rgba(32,184,176,0.4);
+      margin-bottom: 1rem;
+    }
+    .submit-btn:hover {
+      background: var(--black);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .submit-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* Register link */
+    .register-text {
+      text-align: center;
+      font-size: .85rem;
+      opacity: .8;
+    }
+    .register-text a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .register-text a:hover { text-decoration: underline; }
+
+    /* Success message */
+    .login-success {
+      display: none;
+      background: rgba(32,184,176,0.12);
+      border: 1.5px solid var(--accent);
+      border-radius: .7rem;
+      padding: .7rem 1rem;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: .85rem;
+      margin-top: .8rem;
+      align-items: center;
+      gap: .5rem;
+    }
+    .login-success.show { display: flex; }
+
+    /* Small-height screens – allow tiny internal scroll only if needed */
+    @media (max-height: 620px) {
+      body { align-items: flex-start; padding-top: 1rem; }
+      .login-form-panel { overflow-y: auto; max-height: calc(100vh - 2rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOP-RIGHT TOGGLES ===== -->
+<div class="top-controls">
+  <button class="top-btn" id="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-circle-half-stroke" id="theme-icon"></i>
+  </button>
+  <button class="top-btn" id="rtl-toggle" aria-label="Toggle RTL">
+    <i class="fas fa-right-left"></i>
+  </button>
+</div>
+
+<!-- ===== CENTERED LOGIN CARD ===== -->
+<div class="login-wrapper">
+
+  <!-- LEFT: Brand Panel -->
+  <div class="login-brand">
+    <a href="index.html" class="brand-logo">
+      <div class="brand-logo-icon"><i class="fas fa-spray-can"></i></div>
+      <div class="brand-logo-text">Fresh<span>&Clean</span></div>
+    </a>
+    <div class="brand-content">
+      <h2>Welcome back to a fresher home.</h2>
+      <p>Sign in to manage your bookings, track your cleaning history, and access exclusive member offers.</p>
+      <ul class="brand-features">
+        <li><i class="fas fa-check"></i> Book cleanings in seconds</li>
+        <li><i class="fas fa-check"></i> Track your service history</li>
+        <li><i class="fas fa-check"></i> Member-only discounts</li>
+      </ul>
+    </div>
+    <div class="brand-footer">© 2026 Fresh & Clean. All rights reserved.</div>
+  </div>
+
+  <!-- RIGHT: Login Form -->
+  <div class="login-form-panel">
+    <div class="form-header">
+      <h1>Welcome <span>Back</span></h1>
+      <p>Log in to your Fresh & Clean account.</p>
+    </div>
+
+    <!-- Social Buttons with Original Logos -->
+    <div class="social-buttons">
+      <!-- Google -->
+      <button class="social-btn" aria-label="Continue with Google" type="button">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+      </button>
+      <!-- Facebook -->
+      <button class="social-btn" aria-label="Continue with Facebook" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </button>
+      <!-- Apple -->
+      <button class="social-btn" aria-label="Continue with Apple" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#000000" class="apple-logo" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="divider">or continue with email</div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+      <div class="field">
+        <label for="email">Email Address</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+          <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
+            <i class="fas fa-eye" id="eye-icon"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="remember">
+          <input type="checkbox" id="remember" />
+          Remember me
+        </label>
+        <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+
+      <div class="login-success" id="login-success">
+        <i class="fas fa-check-circle"></i> Login successful! Redirecting...
+      </div>
+    </form>
+
+    <p class="register-text">Don't have an account? <a href="register.html">Create one</a></p>
+  </div>
+
+</div>
+
+<script>
+  /* ===== THEME TOGGLE ===== */
+  const htmlEl = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+
+  let theme = localStorage.getItem('theme') || 'light';
+  htmlEl.setAttribute('data-theme', theme);
+  if (theme === 'dark') {
+    htmlEl.classList.add('dark');
+    themeIcon.className = 'fas fa-sun';
+  }
+
+  themeBtn.addEventListener('click', () => {
+    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      htmlEl.classList.add('dark');
+      themeIcon.className = 'fas fa-sun';
+    } else {
+      htmlEl.classList.remove('dark');
+      themeIcon.className = 'fas fa-circle-half-stroke';
+    }
+  });
+
+  /* ===== RTL TOGGLE ===== */
+  const rtlBtn = document.getElementById('rtl-toggle');
+  let direction = localStorage.getItem('direction') || 'ltr';
+  htmlEl.setAttribute('dir', direction);
+
+  rtlBtn.addEventListener('click', () => {
+    const newDir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+    htmlEl.setAttribute('dir', newDir);
+    localStorage.setItem('direction', newDir);
+  });
+
+  /* ===== PASSWORD VISIBILITY TOGGLE ===== */
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('toggle-password');
+  const eyeIcon = document.getElementById('eye-icon');
+
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    eyeIcon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+  });
+
+  /* ===== LOGIN FORM SUBMIT ===== */
+  const loginForm = document.getElementById('login-form');
+  const loginSuccess = document.getElementById('login-success');
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    loginSuccess.classList.add('show');
+    setTimeout(() => {
+      loginSuccess.classList.remove('show');
+      // window.location.href = 'index.html'; // optional redirect
+    }, 2500);
+  });
+
+  /* ===== DYNAMIC APPLE LOGO COLOR FOR DARK MODE ===== */
+  function updateAppleLogo() {
+    const applePath = document.querySelector('.apple-logo');
+    if (!applePath) return;
+    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    applePath.setAttribute('fill', isDark ? '#FFFFFF' : '#000000');
+  }
+  updateAppleLogo();
+
+  // Re-check apple logo when theme changes
+  themeBtn.addEventListener('click', () => {
+    setTimeout(updateAppleLogo, 10);
+  });
+</script>
+</body>
+</html>
